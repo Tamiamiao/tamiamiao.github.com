@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>地理位置</title>
+	<style type="text/css">
+		
+	</style>
+	<script type="text/javascript">
+		if(navigator.geolocation){
+			navigator.geolocation.getCurrentPosition(function(ev){
+				//获取一次地理位置
+				var msg=ev.coords;
+				//经度
+				alert(msg.longitude);
+				//纬度
+				alert(msg.latitude);
+				alert('成功');
+			},function(ev){
+				alert('失败')
+			})
+
+			//实时获取地理位置
+			navigator.geolocation.watchPosition(function(ev){
+				var msg=ev.coords;
+				for(var name in msg){
+					document.write(name+':'+msg[name]+'<br />')
+				}
+			},function(ev){
+				alert('失败')
+			})
+		}else{
+			alert('失败');
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
