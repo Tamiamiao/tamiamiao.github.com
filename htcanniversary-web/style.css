@@ -1,0 +1,341 @@
+@charset "utf-8";
+/* CSS Document */
+
+html,body{
+	margin:0;
+	padding:0;
+	}
+img{
+	display:block;
+	width:100%;
+	margin:auto;
+	}
+.htc_p5,.htc_p6,.htc_p8,.htc_p9,.htc_p11,.htc_p12,.htc_p13,.htc_p14,.htc_p15,.htc_p16,.htc_p17,.htc_p18{position:relative;}
+.htc_p5_box{
+	width:80%;
+	height:96%;
+	position:absolute;
+	top:4%;
+	left:50%;
+	margin-left:-41%;
+	}
+#lottery{
+	width:100%;
+	height:100%;
+	background:url(images/background.png) no-repeat center center;
+	background-size:100% 100%;
+	}
+#lottery table{
+	width:90%;
+	position:absolute;
+	left:51%;
+	top:5%;
+	margin-left:-45.5%;
+	}
+.options{
+	width:33.3%;
+	height:33.3%;
+	background:url(images/img_bg.png) no-repeat center center;
+	background-size:96% 92%;
+	}
+td.current{
+	background: url(images/img_bg_current.png) no-repeat center center;
+	background-size:96% 92%;
+	}
+td.button{
+	background:url(images/img_bg_current.png) no-repeat center;
+	background-size:96% 92%;
+	}
+td.button a{
+	display:inline-block;
+	width:100%;
+	height:100%;
+	border:none;
+	outline:none
+	}
+td.button a img{border:none;}
+.htc_p6_box{
+	width:80%;
+	height:36%;
+	position:absolute;
+	left:50%;
+	margin-left:-40%;
+	top:32%;
+	}
+.htc_p6_box table{
+	width:100%;
+	height:100%;
+	text-align:center;
+	font-size:12px;
+	color:#fff;}
+.htc_p8_box{
+	width:94%;
+	height:10%;
+	position:absolute;
+	left:0%;
+	top:28%;
+	}
+.htc_p8_box table{
+	width:52%;
+	height:100%;
+	float:right;
+	color:#fff;
+	font-size:12px;
+	font-weight:bold;}
+	
+/*.skl_item1 td.days,.skl_item1 td.hours,.skl_item1 td.minutes,.skl_item1 td.seconds{
+	background:url(images/time_bg.jpg) no-repeat center center;}
+	
+	*/
+	
+	
+.skl_item1{
+	color:#fff;
+	font-weight:bold;}
+.skl_item1 .days{
+	height:100%;
+	text-align:center;
+	}
+.skl_item1 .hours{
+	height:100%;
+	text-align:center;
+	}
+.skl_item1 .minutes{
+	height:100%;
+	text-align:center;
+	}
+.skl_item1 .seconds{
+	height:100%;
+	text-align:center;
+	}
+	
+	
+.htc_p9_box{
+	width:97%;
+	height:10%;
+	position:absolute;
+	right:0%;
+	top:35%;
+	}
+.htc_p9_box table{
+	width:52%;
+	height:100%;
+	float:left;
+	color:#fff;
+	font-size:12px;
+	font-weight:bold;}
+
+.skl_item2{
+	color:#fff;
+	font-weight:bold;}
+.skl_item2 .days{
+	height:100%;
+	text-align:center;
+	}
+.skl_item2 .hours{
+	height:100%;
+	text-align:center;
+	}
+.skl_item2 .minutes{
+	height:100%;
+	text-align:center;
+	}
+.skl_item2 .seconds{
+	height:100%;
+	text-align:center;
+	}
+	
+	
+.htc_p8_box_btn{
+	width:95%;
+	height:12%;
+	position:absolute;
+	left:0;
+	top:40%;
+	}
+.htc_p8_box_btn a{
+	display:block;
+	width:28%;
+	height:100%;
+	 
+	float:right;}
+.htc_p9_box_btn{
+	width:53%;
+	height:12%;
+	 
+	position:absolute;
+	left:0;
+	top:49%;
+	}
+.htc_p9_box_btn a{
+	display:block;
+	width:50%;
+	height:100%;
+	 
+	float:right;}
+.htc_p11_box_btn{
+	width:80%;
+	height:90%;
+	 
+	position:absolute;
+	left:50%;
+	margin-left:-40%;
+	top:0%;
+	}
+.htc_p11_box_btn a{
+	display:block;
+	width:100%;
+	height:100%;
+	 
+	float:right;}
+
+.htc_p12_box_btn{
+	width:80%;
+	height:70%;
+	 
+	position:absolute;
+	left:50%;
+	margin-left:-40%;
+	top:18%;
+	}
+.htc_p12_box_btn_a{
+	display:block;
+	width:48%;
+	height:100%;
+	 
+	float:left;}
+.htc_p12_box_btn_b{
+	
+	display:block;
+	width:48%;
+	height:100%;
+	 
+	float: right;}
+.htc_p13_box_btn{
+	width:80%;
+	height:80%;
+	 
+	position:absolute;
+	left:50%;
+	margin-left:-40%;
+	top:14%;
+	}
+.htc_p13_box_btn a{
+	display:block;
+	width:100%;
+	height:100%;
+	 
+	float:right;}
+	
+
+.htc_p14_box_btn{
+	width:80%;
+	height:70%;
+	 
+	position:absolute;
+	left:50%;
+	margin-left:-40%;
+	top:18%;
+	}
+.htc_p14_box_btn_a{
+	display:block;
+	width:48%;
+	height:100%;
+	 
+	float:left;}
+.htc_p14_box_btn_b{
+	
+	display:block;
+	width:48%;
+	height:100%;
+	 
+	float: right;}
+.htc_p15_box_btn{
+	width:80%;
+	height:12%;
+	 
+	position:absolute;
+	left:50%;
+	margin-left:-40%;
+	top:10%;
+	}
+.htc_p15_box_btn a{
+	display:block;
+	width:26%;
+	height:100%;
+	 
+	float:right;}
+.htc_p16_box_btn{
+	width:80%;
+	height:80%;
+	 
+	position:absolute;
+	left:50%;
+	margin-left:-40%;
+	top:5%;
+	}
+.htc_p16_box_btn_a{
+	display:block;
+	width:40%;
+	height:100%;
+	 
+	float:left;}
+.htc_p16_box_btn_b{
+	display:block;
+	width:40%;
+	height:100%;
+	 
+	float: right;}
+.htc_p17_box_btn{
+	width:76%;
+	height:15%;
+	 
+	position:absolute;
+	left:50%;
+	margin-left:-40%;
+	top:43%;
+	}
+.htc_p17_box_btn a{
+	display:block;
+	width:27%;
+	height:100%;
+	 
+	float:right;}
+.htc_p18_box_btn{
+	width:90%;
+	height:42%;
+	 
+	position:absolute;
+	left:50%;
+	margin-left:-45%;
+	top:5%;
+	}
+.htc_p18_box_btn_a{
+	display:block;
+	width:40%;
+	height:100%;
+	 
+	float:left;}
+.htc_p18_box_btn_b{
+	display:block;
+	width:40%;
+	height:100%;
+	 
+	float: right;}
+	
+.pop_box{
+	display:none;
+	width:80%;
+	height:25%;
+	text-align:center;
+	background:url(images/pop.png) no-repeat center center;
+	background-size:100% 60%;
+	color:#fff;
+	position: fixed;
+	left:50%;
+	margin-left:-40%;
+	top:50%;
+	margin-top:-92.5px;
+	font-size:16px;
+	font-weight:bold;
+	}

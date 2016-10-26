@@ -1,0 +1,281 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>留言板</title>
+<link href="style/weibo.css" rel="stylesheet" type="text/css" />
+<link href="../logo.png" rel="shortcut icon" />
+<script src="all_ajax.js"></script>
+<script src="cookie.js"></script>
+<script>
+//2011-09-08 16:37:60 	秒
+function getCnTime(s){
+	var oDate=new Date(s*1000);
+	return oDate.getFullYear()+'-'+(oDate.getMonth()+1)+'-'+oDate.getDate()+' '+oDate.getHours()+':'+oDate.getMinutes()+':'+oDate.getSeconds();
+}
+window.onload=function (){
+	var oTxt=document.getElementById('tijiaoText');
+	var oSend=document.getElementById('send_btn');
+	var oNc=document.getElementById('nc');
+	var oMsgList=document.getElementById('msgList');
+	var oPage=document.getElementById('page');
+	//alert(window.location.hash.substring(5));
+	var iNow=window.location.hash.substring(5)||1;
+	
+	//url
+	url='weibo.php';
+	
+	//添加留言
+	oSend.onclick=function (){
+		if(oTxt.value=='')return;
+		ajax({
+			url:url,
+			//act=add&content=xxx
+			data:{
+				act:'add',
+				content:oTxt.value
+			},
+			success:function (str){
+				//返回：{error:0, id: 新添加内容的ID, time: 添加时间}
+				var json=eval('('+str+')');
+				if(!json.error){
+					oPage.innerHTML='';
+					getPage();
+					var oDiv=createReply(json.id,oTxt.value,json.time,0,0);
+					//0   123456
+					if(!oMsgList.children.length){
+						oMsgList.appendChild(oDiv);
+					}else{
+						oMsgList.insertBefore(oDiv,oMsgList.children[0]);
+					}
+					oTxt.value='';
+					oTxt.focus();
+					if(oMsgList.children.length>6){
+						oMsgList.removeChild(oMsgList.children[6]);
+					}
+					if(oMsgList.children.length){
+						oNc.style.display='none';
+					}else{
+						oNc.style.display='block';
+					}
+				}else{
+					alert('留言失败');
+				}
+			},
+			error:function (err){
+				alert(err);
+			}
+		});
+	};
+	//创建div
+	function createReply(id,content,time,acc,ref){
+		var oDiv=document.createElement('div');
+		oDiv.className='reply';
+		oDiv.innerHTML='<p class="replyContent">'+content+'</p>'
+	+'<p class="operation">'
+		+'<span class="replyTime">'+getCnTime(time)+'</span>'
+		+'<span class="handle">'
+			+'<a href="javascript:;" class="top">'+acc+'</a>'
+			+'<a href="javascript:;" class="down_icon">'+ref+'</a>'
+			+'<a href="javascript:;" class="cut">删除</a>'
+		+'</span>'
+	+'</p>';
+	
+		var oAcc=oDiv.getElementsByTagName('a')[0];
+		var oRef=oDiv.getElementsByTagName('a')[1];
+		var oDel=oDiv.getElementsByTagName('a')[2];
+		
+		oAcc.onclick=function (){
+			if(getCookie('acc'+id)){
+				alert('一天只能点一次');
+				return ;
+			}
+			ajax({
+				url:url,
+				//act=acc&id=12
+				data:{
+					act:'acc',
+					id:id
+				},
+				success:function (str){
+					var json=eval('('+str+')');
+					if(!json.error){
+						oAcc.innerHTML++;
+						alert('点赞成功');
+						setCookie('acc'+id,oAcc.innerHTML,1);
+					}else{
+						alert('点赞失败');
+					}
+				},
+				error:function (err){
+					alert(err);
+				}
+			});
+		};
+		oRef.onclick=function (){
+			//alert(getCookie('ref'+id));
+			if(getCookie('ref'+id)){ 		
+				alert('一天只能点一次');
+				return ;
+			}
+			ajax({
+				url:url,
+				//act=acc&id=12
+				data:{
+					act:'ref',
+					id:id
+				},
+				success:function (str){
+					var json=eval('('+str+')');
+					if(!json.error){
+						oRef.innerHTML++;
+						alert('踩成功');
+						setCookie('ref'+id,oRef.innerHTML,1);
+					}else{
+						alert('踩失败');
+					}
+				},
+				error:function (err){
+					alert(err);
+				}
+			});
+		};
+		oDel.onclick=function (){
+			ajax({
+				url:url,
+				//act=del&id=12	
+				data:{
+					act:'del',
+					id:id
+				},
+				success:function (str){
+					var json=eval('('+str+')');
+					if(!json.error){
+						if(oMsgList.children.length){
+							oNc.style.display='none';
+						}else{
+							oNc.style.display='block';
+						}
+						alert('删除成功');
+						oMsgList.removeChild(oDel.parentNode.parentNode.parentNode);
+						oMsgList.innerHTML='';
+						getMsg();
+						oPage.innerHTML='';
+						getPage();
+					}else{
+						alert('删除失败');
+					}
+				},
+				error:function (err){
+					alert(err);
+				}
+			});
+		};
+		return oDiv;
+	}
+	//获取某一页留言
+	function getMsg(){
+		ajax({
+			url:url,
+			//act=get&page=1
+			data:{
+				act:'get',
+				page:iNow
+			},
+			success:function (str){
+				//：[{id: ID, content: "内容", time: 时间戳, acc: 顶次数, ref: 踩次数}, {...}, ...]
+				var arr=eval('('+str+')');
+				for(var i=0; i<arr.length; i++){
+					var oDiv=createReply(arr[i].id,arr[i].content,arr[i].time,arr[i].acc,arr[i].ref);
+					oMsgList.appendChild(oDiv);
+				}
+				if(oMsgList.children.length){
+					oNc.style.display='none';
+				}else{
+					oNc.style.display='block';
+				}
+
+			},
+			error:function (err){
+				alert(err);
+			}
+		});
+	}
+	getMsg();
+	//获取页数
+	function getPage(){
+		ajax({
+			url:url,
+			//act=get_page_count
+			data:{
+				act:'get_page_count'
+			},
+			success:function (str){
+				//{count:页数}
+				var json=eval('('+str+')');
+				for(var i=0; i<json.count; i++){
+					var oA=document.createElement('a');
+					oA.href='#page'+(i+1);
+					oA.innerHTML=i+1;
+					oPage.appendChild(oA);
+					if((iNow-1)==i){
+						oA.className='active';
+					}
+					oA.onclick=function (){
+						var aA=oPage.children;
+						for(var i=0; i<aA.length; i++){
+							aA[i].className='';
+						}
+						this.className='active';
+						//alert(this.innerHTML);
+						iNow=parseInt(this.innerHTML);
+						oMsgList.innerHTML='';
+						getMsg(iNow);
+					}
+				}
+			},
+			error:function (err){
+				alert(err);
+			}
+		});
+	}
+	getPage();
+};
+</script>
+</head>
+
+<body style="height:100000px;">
+<div class="znsArea">
+<!--留言-->
+     <div class="takeComment">
+        <textarea name="textarea" class="takeTextField" id="tijiaoText"></textarea>
+        <div class="takeSbmComment">
+            <input type="button" class="inputs" value="" id="send_btn" />
+            <span>(可按 Enter 回复)</span>
+        </div>
+    </div>
+<!--已留-->
+    <div class="commentOn">
+        <div class="noContent" id="nc">暂无留言</div>
+        <div class="messList" id="msgList">
+        	<!--<div class="reply">
+                <p class="replyContent">卫士，新款卫士将推出总共14种车身式样。其中， XS旅行款车型售价为32295英镑(约33.6万元)。</p>
+                <p class="operation">
+                    <span class="replyTime">2011-09-08 16:37:60</span>
+                    <span class="handle">
+                    	<a href="javascript:;" class="top">0</a>
+                        <a href="javascript:;" class="down_icon">0</a>
+                        <a href="javascript:;" class="cut">删除</a>
+                    </span>
+                </p>
+            </div>-->
+        </div>
+        <div class="page" id="page">
+        	<!--<a href="javascript:;" class="active">1</a>
+        	<a href="javascript:;">2</a>
+        	<a href="javascript:;">3</a>-->
+        </div>
+    </div>
+</div>
+</body>
+</html>
