@@ -6,7 +6,7 @@ function getDir(obj,ev){
 	return Math.round((Math.atan2(y,x)*180/Math.PI+180)/90)%4;
 }
 function through(obj){
-	obj.onmouseenter=function(ev){
+	obj.onmouseenter=obj.onclick=function(ev){
 		var oLi=obj.children[1];
 		var oEvent=ev||event;
 		var dir=getDir(obj,oEvent);
@@ -50,6 +50,7 @@ function through(obj){
 		}
 	};		
 }
+//nav
 function con(){
 	var oDiv=document.getElementById('container');
 	var aDiv=oDiv.children;
@@ -78,6 +79,7 @@ function con(){
 		}
 	},500)
 }
+//banner
 function banner(){
 	var oBox=document.getElementById('banner');
 	var oPrev=oBox.children[0];
