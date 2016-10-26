@@ -498,4 +498,20 @@ a{
 	color:#fff;
 	height:80px;
 }
+/*返回顶部*/
+#btn2{
+	width:70px;
+	height:70px;
+	text-align:center;
+	line-height:70px;
+	background:#06F;
+	position:fixed;
+	position:_absolute;
+	bottom:20px;
+	right:0;
+	display:none;
+}
+#btn2 a{
+	color:#fff;
+}
 
