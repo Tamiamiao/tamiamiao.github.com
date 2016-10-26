@@ -162,12 +162,38 @@ function banner(){
 		},30);
 	}
 }
-window.onload=function(){
-	var oDome=document.getElementById('dome-all');
-	var aUl=oDome.getElementsByTagName('ul');
-	for(var i=0; i<aUl.length; i++){
-		through(aUl[i]);
-	}
-	con();
-	banner();
+//返回顶部
+function returnTop(){
+	var oBtn = document.getElementById('btn2');	
+	var timer = null;
+	var bSin=false;
+	
+	window.onscroll=function(){
+		if(bSin){
+			clearInterval(timer);
+		}
+		bSin=true;
+		var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+		if(scrollTop){
+			oBtn.style.display='block';	
+		}else{
+			oBtn.style.display='none';	
+		}	
+	};
+	oBtn.onclick=function(){
+		var start=document.documentElement.scrollTop||document.body.scrollTop;
+		var dis=0-start;
+		var count=Math.floor(1000/30);
+		var n=0;
+		timer=setInterval(function(){
+			bSin=false;
+			n++;
+			var a=n/count;
+			var cur=start+dis*a;
+			document.documentElement.scrollTop=document.body.scrollTop=cur;	
+			if(n==count){
+				clearInterval(timer);	
+			}
+		},100);
+	};
 };
