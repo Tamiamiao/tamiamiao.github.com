@@ -95,7 +95,11 @@ a{
 	width:0;
 	height:50px;
 	background-color:#000;
-	transition:all .5s ease;
+	-webkit-transition:.5s all ease;
+	-moz-transition:.5s all ease;
+	-ms-transition:.5s all ease;
+	-o-transition:.5s all ease;
+	transition:.5s all ease;
 	z-index:-1;
 }
 .col-md-3:hover:after{
@@ -109,6 +113,7 @@ a{
 	top:50px;
 	opacity:0;
 	width:200px;
+	filter:alpha(opacity=0);
 }
 .con-f{
 	position:relative;
@@ -126,11 +131,17 @@ a{
 	left:0;
 	top:0;
 	z-index:-1;
+	-webkit-transition:3s all ease .5s;
+	-moz-transition:3s all ease .5s;
+	-ms-transition:3s all ease .5s;
+	-o-transition:3s all ease .5s;
 	transition:3s all ease .5s;
-	opacity:0;		
+	opacity:0;	
+	filter:alpha(opacity=0);	
 }
 .introduce:hover #pic1{
 	opacity:1;
+	filter:alpha(opacity=1);
 	left:90%;
 	top:0%;
 }
@@ -151,6 +162,7 @@ a{
 }
 #container>div{
 	opacity:0;
+	filter:alpha(opacity=0);
 }
 @media (min-width: 1200px)
 .container {
@@ -207,7 +219,11 @@ a{
 	height:50px;
 	border-radius:50px;
 	background-color:#09C;
-	transition:all .5s ease;
+	-webkit-transition:.5s all ease;
+	-moz-transition:.5s all ease;
+	-ms-transition:.5s all ease;
+	-o-transition:.5s all ease;
+	transition:.5s all ease;
 	z-index:-1;
 }
 .a-link:hover:after{
@@ -230,7 +246,11 @@ a{
 	color:##f6f7ff;
 	width:25%;
 	position:relative;
-	transition:all .5s ease;
+	-webkit-transition:.5s all ease;
+	-moz-transition:.5s all ease;
+	-ms-transition:.5s all ease;
+	-o-transition:.5s all ease;
+	transition:.5s all ease;
 	float:left;
 }
 @media (min-width: 770px){
@@ -249,6 +269,10 @@ a{
 	right:0;
 	top:60%;
 	transform:translateY(-50%);
+	-ms-transform:translateY(-50%); 	
+	-moz-transform:translateY(-50%); 
+	-webkit-transform:translateY(-50%);
+	-o-transform:translateY(-50%); 
 }
 .mask-item h3{
 	color:#fff;
@@ -262,12 +286,17 @@ a{
 	height:80px;
 	margin:0 15px;
 	opacity:0;
+	filter:alpha(opacity=0);
 }
 #service .col-sm-3:hover {
 	background-color: rgba(0,0,0,0.8);
 	color: #49C9DE;
 }
 #service .col-sm-3:hover .mask-item-3{
+	-webkit-transition:2s all ease;
+	-moz-transition:2s all ease;
+	-ms-transition:2s all ease;
+	-o-transition:2s all ease;
 	transition:2s all ease;
 	margin-top:-20px;
 }
@@ -279,6 +308,7 @@ a{
 }
 #service .col-sm-3:hover p{
 	opacity:1;
+	filter:alpha(opacity=1);
 	color:#069;
 } 
 /*声明字体*/
@@ -353,8 +383,13 @@ a{
 	width:50px;
 	height:50px;
 	background:rgba(255,255,255,0.2);
-	transition:0.4s all ease;
+	-webkit-transition:.4s all ease;
+	-moz-transition:.4s all ease;
+	-ms-transition:.4s all ease;
+	-o-transition:.4s all ease;
+	transition:.4s all ease;
 	opacity:0;
+	filter:alpha(opacity=0);
 	position:absolute;
 	top:50%;
 	z-index:2;
@@ -469,6 +504,10 @@ a{
 	position:relative;
 }
 .col-sm-4:hover .mask-item{
+	-webkit-transition:1s all ease;
+	-moz-transition:1s all ease;
+	-ms-transition:1s all ease;
+	-o-transition:1s all ease;
 	transition:1s all ease;
 	margin-top:-10px;
 }
